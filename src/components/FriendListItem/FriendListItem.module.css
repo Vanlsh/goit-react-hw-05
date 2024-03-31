@@ -1,0 +1,20 @@
+.card {
+  padding: 10px 5px;
+  width: 100px;
+  border: 2px solid var(--color-dark);
+  border-radius: 5px;
+  text-align: center;
+}
+.img {
+  width: 100%;
+  margin: 0 auto;
+}
+.name {
+  font-size: 24px;
+}
+.online {
+  color: var(--color-online);
+}
+.offline {
+  color: var(--color-offline);
+}
