@@ -1,0 +1,14 @@
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.link {
+  padding: 10px 20px;
+
+  font-weight: 700;
+}
+
+.link.active {
+  color: var(--color-accent);
+}
