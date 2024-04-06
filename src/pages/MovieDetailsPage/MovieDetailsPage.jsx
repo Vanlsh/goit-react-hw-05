@@ -23,7 +23,7 @@ const MovieDetailsPage = () => {
       }
     };
     fetchMovie();
-  }, []);
+  }, [movieId]);
   console.log(movieId);
   return (
     <main>
