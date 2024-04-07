@@ -3,6 +3,12 @@ import { getMovies } from "../../api/movies";
 import MovieList from "../../components/MovieList/MovieList";
 import { useSearchParams } from "react-router-dom";
 
+import Section from "../../components/Section/Section";
+import Container from "../../components/Container/Container";
+import Form from "../../components/Form/Form";
+import Loader from "../../components/Loader/Loader";
+import Heading from "../../components/Heading/Heading";
+
 const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -11,16 +17,14 @@ const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
 
-  const [inputQuery, setInputQuery] = useState(query ?? "");
-
   useEffect(() => {
-    console.log(query);
     if (!query) return;
 
     const fetchMovies = async () => {
+      setIsLoading(true);
+      setMovies(null);
       try {
         setError(null);
-        setIsLoading(true);
         const { data } = await getMovies(query);
         setMovies(data.results);
       } catch (e) {
@@ -33,31 +37,20 @@ const MoviesPage = () => {
     fetchMovies();
   }, [query]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newQuery = inputQuery.trim();
-    if (!newQuery) {
-      console.log("can not be empty");
-      return;
-    }
-    setSearchParams({ query: newQuery });
+  const handleSearch = (query) => {
+    setSearchParams({ query });
   };
 
   return (
-    <main>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={inputQuery}
-          onChange={(e) => setInputQuery(e.target.value)}
-          type="text"
-          name="query"
-        />
-        <button type="submit">Search</button>
-      </form>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>{error}</div>}
-      {movies && <MovieList movies={movies} />}
-    </main>
+    <Section>
+      <Container>
+        <Form handleSearch={handleSearch} value={query} />
+        {isLoading && <Loader />}
+        {movies && !movies.length && <Heading title="No Movies" />}
+        {error && <Heading title={error} />}
+        {movies && <MovieList movies={movies} />}
+      </Container>
+    </Section>
   );
 };
 

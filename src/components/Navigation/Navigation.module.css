@@ -1,6 +1,5 @@
 .nav {
   display: flex;
-  gap: 20px;
 }
 
 .link {
@@ -10,5 +9,11 @@
 }
 
 .link.active {
-  color: var(--color-accent);
+  color: var(--color-blue);
+}
+
+.link:hover,
+.link:focus {
+  opacity: 0.9;
+  background-color: var(--color-gray-background);
 }

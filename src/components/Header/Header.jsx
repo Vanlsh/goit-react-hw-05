@@ -1,11 +1,14 @@
 import css from "./Header.module.css";
 import Navigation from "../Navigation/Navigation.jsx";
+import Container from "../Container/Container.jsx";
 
 const Header = () => {
   return (
-    <div className={css.header}>
-      <Navigation />
-    </div>
+    <header className={css.header}>
+      <Container>
+        <Navigation />
+      </Container>
+    </header>
   );
 };
 

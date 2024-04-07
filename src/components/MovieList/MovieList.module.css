@@ -1,0 +1,10 @@
+.list {
+  margin-top: 20px;
+}
+.listLink {
+  padding: 5px 20px;
+}
+
+.listLink:hover {
+  background-color: var(--color-gray-background);
+}
